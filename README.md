@@ -40,3 +40,9 @@ prefix + z -> zoom panel
 prefix + c -> create new panel
 prefix + n -> switch between panel
 ```
+
+### CMD Checklist
+- Oh My ZSH -> https://github.com/ohmyzsh/ohmyzsh
+- FZF -> https://github.com/junegunn/fzf
+- jump -> https://github.com/gsamokovarov/jump
+
