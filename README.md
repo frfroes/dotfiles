@@ -10,23 +10,24 @@ git clone https://github.com/frenangomes/dotfiles
 ### NEOVIM
 Install [vim-plug](https://github.com/junegunn/vim-plug)
 
-Make sure that you have `~/.config/nvim/init.vim` and add it there:
+Make sure that you have `~/.config/nvim/init.vim` and source this project's `init.vim` there:
 ```
-source $HOME/dotfiles/vim/init.vim
-```
-
-```VIM
-:PlugInstall
-```
-
-### VIM
-Install [vim-plug](https://github.com/junegunn/vim-plug)
-
-Make sure that you have `~/.vimrc` and add it there:
-```
-source $HOME/dotfiles/vim/init.vim
+source $HOME/<path-to-project>/dotfiles/vim/init.vim
 ```
 
 ```VIM
 :PlugInstall
 ```
+
+### TMUX
+
+Install [tmux-plugins](https://github.com/tmux-plugins/tpm)
+
+Make sure that you have `~/.tmux.conf` and source this project's `tmux.conf` there:
+
+```bash
+source $HOME/<path-to-project>/dotfiles/.tmux.conf
+```
+
+Install plugins with [tmux-plugins](https://github.com/tmux-plugins/tpm)
+
