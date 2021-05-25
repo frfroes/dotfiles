@@ -1,4 +1,5 @@
 # Dotfiles
+Intial workstation setup 🤖
 
 ## Setup
 
@@ -31,3 +32,11 @@ source $HOME/<path-to-project>/dotfiles/.tmux.conf
 
 Install plugins with [tmux-plugins](https://github.com/tmux-plugins/tpm)
 
+#### Cheatsheet
+```
+prefix + | -> split vertical
+prefix + - -> split horizontal
+prefix + z -> zoom panel
+prefix + c -> create new panel
+prefix + n -> switch between panel
+```
