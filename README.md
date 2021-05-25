@@ -5,7 +5,7 @@ Intial workstation setup 🤖
 
 Clone dotfiles
 ```bash
-git clone https://github.com/frenangomes/dotfiles
+git clone https://github.com/frfroes/dotfiles
 ```
 
 ### NEOVIM
