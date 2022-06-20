@@ -33,6 +33,9 @@ call plug#begin('~/.vim/plugged')
   " Colorschema. Zeno's Rocha Wonderwall.
   Plug 'dracula/vim'
 
+  " Tema da hora
+  Plug 'drewtempelmeyer/palenight.vim'
+
   " Display Indentation line
   Plug 'Yggdroot/indentLine'
 
@@ -117,8 +120,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'andyl/vim-textobj-elixir'
 
   " Fuzzy finder
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
 
   " Quick search and replace for Vim
   Plug 'hauleth/sad.vim'
@@ -278,7 +281,7 @@ let g:startify_change_to_vcs_root = 1
 " Enable syntax highlighting
 set termguicolors
 syntax enable
-colorscheme dracula
+colorscheme palenight
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -295,7 +298,7 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='dracula'
+let g:airline_theme='palenight'
 
 " Add Slim syntax
 autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
@@ -303,22 +306,6 @@ autocmd BufNewFile,BufRead *.lime setlocal filetype=slim
 
 " Disable Syntax Concealing in markdown
 set conceallevel=2
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-            \ { 'fg':      ['fg', 'Normal'],
-            \ 'bg':      ['bg', 'Normal'],
-            \ 'hl':      ['fg', 'Comment'],
-            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-            \ 'hl+':     ['fg', 'Statement'],
-            \ 'info':    ['fg', 'PreProc'],
-            \ 'border':  ['fg', 'Ignore'],
-            \ 'prompt':  ['fg', 'Conditional'],
-            \ 'pointer': ['fg', 'Exception'],
-            \ 'marker':  ['fg', 'Keyword'],
-            \ 'spinner': ['fg', 'Label'],
-            \ 'header':  ['fg', 'Comment'] }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -489,17 +476,11 @@ command! Sfd :SignifyDiff!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fuzzy Finder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:find_git_root()
-  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-endfunction
-
-command! ProjectFiles execute 'Files' s:find_git_root()
-
-" Use <Leader>p to start searching always from project directory.
-nnoremap <silent> <leader>p :ProjectFiles<cr>
-
-" Use <leader>bb to show buffer list
-nnoremap <silent> <leader>bb :Buffers<cr>
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File system explorer
@@ -530,11 +511,6 @@ let g:test#strategy = 'neovim'
 
 " Remap ESC to not close the test window.
 tnoremap <Esc> <C-\><C-n>
-
-" Thanks to remap above it's need to remap ESC to close FZF.
-au TermOpen * tnoremap <Esc> <c-\><c-n>
-au FileType fzf tunmap <Esc>
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 let g:test#preserve_screen = 1
 let g:test#filename_modifier = ":."
