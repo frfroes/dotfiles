@@ -30,8 +30,8 @@ call plug#begin('~/.vim/plugged')
   " This plugin provides a start screen for Vim and Neovim.
   Plug 'mhinz/vim-startify'
 
-  " Colorschema. Zeno's Rocha Wonderwall.
-  Plug 'dracula/vim'
+  " Magical forest
+  Plug 'sainnhe/everforest'
 
   " Tema da hora
   Plug 'drewtempelmeyer/palenight.vim'
@@ -136,6 +136,14 @@ call plug#begin('~/.vim/plugged')
 
   " Well, it's pretty self explenatory
   Plug '907th/vim-auto-save'
+
+  " Project managing
+  Plug 'ahmedkhalf/project.nvim'
+
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+  Plug 'nvim-telescope/telescope-live-grep-args.nvim'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -281,8 +289,19 @@ let g:startify_change_to_vcs_root = 1
 " Enable syntax highlighting
 set termguicolors
 syntax enable
-colorscheme palenight
-
+  " Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+" For dark version.
+set background=dark
+" Set contrast.
+" This configuration option should be placed before `colorscheme everforest`.
+" Available values: 'hard', 'medium'(default), 'soft'
+" let g:everforest_background = 'hard'
+" For better performance
+let g:everforest_better_performance = 1
+colorscheme everforest
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
@@ -298,7 +317,7 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='palenight'
+let g:airline_theme='everforest'
 
 " Add Slim syntax
 autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
@@ -473,18 +492,37 @@ nmap <leader>t :vsp <bar> :terminal<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! Scd :SignifyHunkDiff
 command! Sfd :SignifyDiff!
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Project managing (rooter)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load and cofigure project_nvim
+lua << EOF
+  require("project_nvim").setup {
+    patterns = { ".git", "mix.exs", "package.json" },
+  }
+EOF
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fuzzy Finder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fg <cmd>:lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fp <cmd>Telescope projects<cr>
+" Configure and load telescope plugins
+lua << EOF
+  require('telescope').load_extension('projects')
+  require("telescope").load_extension("live_grep_args")
+EOF
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File system explorer
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " Use <leader>f for toggling NerdTree
 noremap <Leader>f :NERDTreeToggle<CR>
