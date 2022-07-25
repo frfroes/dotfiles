@@ -74,6 +74,10 @@ call plug#begin('~/.vim/plugged')
 
   " JS highlight
   Plug 'pangloss/vim-javascript'
+  Plug 'elzr/vim-json'
+  Plug 'mxw/vim-jsx'
+
+  Plug 'w0rp/ale'
 
   " Elixir LS
   Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
@@ -625,3 +629,8 @@ let b:ale_elixir_elixir_ls_config = {
 \     'dialyzerEnabled': v:false,
 \   },
 \}
+
+" Auto fix JS
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['eslint']
+let g:ale_fix_on_save = 1
