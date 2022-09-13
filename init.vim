@@ -148,6 +148,9 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 
+  Plug 'tpope/vim-projectionist'
+  Plug 'dkuku/vim-projectionist-elixir'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
