@@ -126,6 +126,7 @@ call plug#begin('~/.vim/plugged')
   " Fuzzy finder
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
   " Quick search and replace for Vim
   Plug 'hauleth/sad.vim'
@@ -523,6 +524,7 @@ nnoremap <leader>fp <cmd>Telescope projects<cr>
 lua << EOF
   require('telescope').load_extension('projects')
   require("telescope").load_extension("live_grep_args")
+  require('telescope').load_extension('fzf')
 EOF
 
 
