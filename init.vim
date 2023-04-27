@@ -639,3 +639,13 @@ let b:ale_elixir_elixir_ls_config = {
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint']
 let g:ale_fix_on_save = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Copilot setup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap <C-;> <Plug>(copilot-dismiss)
+inoremap <C-]> <Plug>(copilot-next)
+inoremap <C-[> <Plug>(copilot-previous)
+inoremap <C-\> <Plug>(copilot-suggest)
+
+
