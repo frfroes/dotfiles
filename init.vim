@@ -72,6 +72,9 @@ call plug#begin('~/.vim/plugged')
   " Vue highlight
   Plug 'posva/vim-vue'
 
+  " CSV highlight
+  Plug 'mechatroner/rainbow_csv'
+
   " JS highlight
   Plug 'pangloss/vim-javascript'
   Plug 'elzr/vim-json'
@@ -507,7 +510,7 @@ command! Sfd :SignifyDiff!
 " Load and cofigure project_nvim
 lua << EOF
   require("project_nvim").setup {
-    patterns = { ".git", "mix.exs", "package.json" },
+    patterns = { ".git", "mix.lock", "package.json" },
   }
 EOF
 
