@@ -646,9 +646,8 @@ let g:ale_fix_on_save = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Copilot setup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap <C-;> <Plug>(copilot-dismiss)
 inoremap <C-]> <Plug>(copilot-next)
-inoremap <C-[> <Plug>(copilot-previous)
-inoremap <C-\> <Plug>(copilot-suggest)
-
+" inoremap <C-;> <Plug>(copilot-dismiss)
+" inoremap <C-[> <Plug>(copilot-previous)
+" inoremap <C-\> <Plug>(copilot-suggest)
 
