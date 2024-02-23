@@ -512,7 +512,7 @@ command! Sfd :SignifyDiff!
 " Load and cofigure project_nvim
 lua << EOF
   require("project_nvim").setup {
-    patterns = { ".git", "mix.lock", "package.json" },
+    patterns = { ".git", "mix.exs", "package.json", "Gemfile"},
   }
 EOF
 
