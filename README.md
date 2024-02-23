@@ -44,7 +44,7 @@ Install [Oh My ZSH](https://github.com/ohmyzsh/ohmyzsh)
 
 Install [p10k](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#oh-my-zsh)
 
-Source the `~/.zshrc` file to:
+Source the `~/.zshrc` and the `~/.zshenv` (might have to create) file to:
 ```bash
 source $HOME/<path-to-project>/dotfiles/.zshrc
 ```
