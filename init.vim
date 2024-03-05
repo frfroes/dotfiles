@@ -648,6 +648,8 @@ let g:ale_fix_on_save = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Copilot setup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:copilot_node_command = "~/.nvm/versions/node/v20.11.1/bin/node"
+
 inoremap <C-]> <Plug>(copilot-next)
 " inoremap <C-;> <Plug>(copilot-dismiss)
 " inoremap <C-[> <Plug>(copilot-previous)
