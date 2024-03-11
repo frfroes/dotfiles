@@ -145,7 +145,7 @@ alias aws-profiles="cat ~/.aws/config | grep '\[profile' | sed -r 's/^\[profile 
 
 alias gpush='git push -u origin HEAD'
 alias fpush='git push origin HEAD --force-with-lease'
-alias gpull="git pull"
+alias gpull="git pull origin HEAD"
 alias gc="git checkout"
 alias gcn="git checkout -b"
 
