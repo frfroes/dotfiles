@@ -175,4 +175,9 @@ alias gpull="git pull origin HEAD"
 alias gc="git checkout"
 alias gcn="git checkout -b"
 
+# Claude 
+
+alias yolo='claude --dangerously-skip-permissions'
+
+
 
