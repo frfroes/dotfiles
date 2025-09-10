@@ -11,9 +11,16 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set Oh My Zsh theme conditionally
+# Set Oh My Zsh theme conditionally - detect automation terminals (Agent mode)
+# Check if we're in an automation context by looking at parent process or shell integration
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-  ZSH_THEME=""  # Disable Powerlevel10k for Cursor
+  # Check if this is likely an automation/agent terminal
+  # Look for shell integration scripts or automation profile indicators
+  if [[ "$0" == *"shellIntegration"* || -n "$VSCODE_SHELL_LOGIN" || "$SHLVL" -gt 2 ]]; then
+    ZSH_THEME=""  # Disable Powerlevel10k for Agent/automation terminals
+  else
+    ZSH_THEME="powerlevel10k/powerlevel10k"
+  fi
 else
   ZSH_THEME="powerlevel10k/powerlevel10k"
 fi
@@ -113,10 +120,18 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# Use a minimal prompt in Cursor to avoid command detection issues
+# Use a minimal prompt in Cursor Agent mode only to avoid command detection issues
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-  PROMPT='%n@%m:%~%# '
-  RPROMPT=''
+  # Check if this is likely an automation/agent terminal
+  # Look for shell integration scripts or automation profile indicators
+  if [[ "$0" == *"shellIntegration"* || -n "$VSCODE_SHELL_LOGIN" || "$SHLVL" -gt 2 ]]; then
+    PROMPT='%n@%m:%~%# '
+    RPROMPT=''
+  else
+    source ~/powerlevel10k/powerlevel10k.zsh-theme
+    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+  fi
 else
   source ~/powerlevel10k/powerlevel10k.zsh-theme
   # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
